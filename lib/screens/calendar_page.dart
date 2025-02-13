@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import './trainings/run_training_page.dart';
 import './trainings/edit_run_training_page.dart';
-// import './trainings/gym_training_page.dart';
+import './trainings/gym_training_page.dart';
 import '../entity/custom_appointment.dart';
 import './nutrition_page.dart';
 import './settings_page.dart';
@@ -32,12 +32,12 @@ class CalendarPageState extends State<CalendarPage> {
   late String distance;
   late String time;
 
-  // void _deleteTrainingFromCalendar(String trainingSessionId) {
-  //   setState(() {
-  //     _appointments.removeWhere(
-  //         (appointment) => appointment.trainingSessionId == trainingSessionId);
-  //   });
-  // }
+  void _deleteTrainingFromCalendar(String trainingSessionId) {
+    setState(() {
+      _appointments.removeWhere(
+          (appointment) => appointment.trainingSessionId == trainingSessionId);
+    });
+  }
 
   // Future<void> _addAppointmentToDB(String type, String distance, String time,
   //     String id, CustomAppointment appointment) async {
@@ -443,15 +443,15 @@ class CalendarPageState extends State<CalendarPage> {
       }
     } else if (appointment.subject.startsWith('Зал')) {
       // Если событие связано с залом, открываем страницу для редактирования данных
-      // final result = await Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => GymTrainingPage(
-      //       trainingSessionId: appointment.trainingSessionId,
-      //       onTrainingDeleted: _deleteTrainingFromCalendar,
-      //     ),
-      //   ),
-      // );
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GymTrainingPage(
+            trainingSessionId: appointment.trainingSessionId,
+            onTrainingDeleted: _deleteTrainingFromCalendar,
+          ),
+        ),
+      );
     }
   }
 }
