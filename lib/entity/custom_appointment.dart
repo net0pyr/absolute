@@ -54,9 +54,9 @@ class CustomAppointment extends Appointment {
   factory CustomAppointment.fromJson(Map<String, dynamic> json) =>
       CustomAppointment.withId(
         startTime: DateTime.parse(
-            (json['date']?.toString() ?? DateTime.now().toIso8601String())),
+            (json['startTime']?.toString() ?? DateTime.now().toIso8601String())),
         endTime: DateTime.parse(
-            (json['date']?.toString() ?? DateTime.now().toIso8601String())),
+            (json['startTime']?.toString() ?? DateTime.now().toIso8601String())),
         subject: json['type']?.toString() ?? '',
         color: _getColorForSubject(json['type']?.toString() ?? ''),
         trainingSessionId: json['id']?.toString() ?? '',
